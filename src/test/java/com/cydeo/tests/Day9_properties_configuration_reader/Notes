@@ -1,0 +1,23 @@
+Today's schedule:
+- TestBase Review
+- T1 and T2 Practices
+- Properties
+- ConfigurationReader Utility class
+- Java Faker
+
+
+Test Data- data created or selected to satisfy the execution preconditions and inputs to execute one or more test cases
+
+AUT* Application Under Test
+*username, password, search values etc
+
+How we have been passing our data until today?
+-We have been directly passing our test data in our tests.
+-Which means we are keeping our test data inside out source code.
+-This means we are hard coding out test data.
+
+What is hardcoding?
+-Hardcoding is keeping your data (test data) in source dode.
+
+We are hard coding some of the important tst data.
+We are passing our test data from within our source code

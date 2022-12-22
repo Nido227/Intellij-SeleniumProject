@@ -1,0 +1,134 @@
+XPATH PRACTICES:
+
+IN XPATH INDEX START WITH 1 NOT 0!
+
+What is xpath?
+Main Syntax: //tagName [@attribute='value']
+-it is on of 8 locators of Selenium
+-there are 2 types of xpath: (Absolute xpath, Relative xpath)
+-it allows us to create custom locator with using any attribute and value
+-we can move from parent to child
+
+1-    <div id="uh98">
+2-        <div>
+3-            <a href="https://google.com"> Google 1 </a>
+4-        </div>
+5-        <div>
+6-            <a href="https://google.com"> Google 2 </a>
+7-        </div>
+8-        <div>
+9-            <a href="https://google.com"> Google 3 </a>
+10-       </div>
+</div>
+
+How do we move from parent to direct child?
+-We use "/" single slash to move from parent to direct child.
+
+Example #1: Write locator returning #2 using "/"
+        //div[@id='uh98']/div
+           PARENT         DIRECT CHILD
+
+Example #2: Write locator returning #3 using "/"
+        //div[@id='uh98']/div/a
+
+Example #3: Write locator returning #5 using "/"
+        //div[@id='uh98']/div --> 1 of 3
+        (//div[@id='uh98']/div)[2] --> this will return 2nd div in line 5.
+
+How do we move from parent to any child?
+-We use "//" double slash from parent to any child
+
+What does "//" mean
+-It means jump to the point I will be giving any tagName
+-or it can start from anywhere
+
+Indexing using xpath locator
+-if there are more than 1 matching result for xpath locator, we can use indexes to select exactly which one we want
+
+    <div id="uh98">
+       <a href="https://google.com"> Google 1 </a>
+       <a href="https://google.com"> Google 2 </a>
+       <a href="https://google.com"> Google 3 </a>
+    </div>
+
+Ex: //a[@href='https://google.com'] --> 1 of 3
+
+- //a[@href='https://google.com'] --> It will locate "Google 1"
+- (//a[@href='https://google.com'])[2] --> It will locate "Google 2"
+- (//a[@href='https://google.com'])[3] --> It will locate "Google 3"
+
+How do we go from child to parent
+-We use "/..?
+-we do not have to provide any tagName
+-it will automatically take you to parent from child
+
+1-    <div id="uh98">
+2-        <div>
+3-            <a href="https://google.com"> Google 1 </a>
+4-        </div>
+5-        <div>
+6-            <a href="https://google.com"> Google 2 </a>
+7-        </div>
+8-        <div>
+9-            <a href="https://google.com"> Google 3 </a>
+10-       </div>
+</div>
+
+
+This will take you to line 8 and the '/a' will take you to 9
+    (//div[@id='uh98']/div)[3]/a
+
+
+Ex: Locate Google 2 link using its texts with xpath
+-  //a[.='Google 2'] --> it takes us to line #6
+-  //a[.='Google 2']/.. --> it takes us to line 5 ( direct parent )
+-  //a[.='Google 2']/../.. - it takes us to line 1
+
+-----------------------------------------------------------------------------------------------------------------------
+
+FindElement vs FindElements
+
+FindElement:
+-returns single web element
+-return type is WebElement
+-when element is not found, it will throw NoSuchElementException
+
+FindElements:
+-returns list of web elements
+-return type is List<WebElement>
+-it will not throw any exception it will return to empty list
+
+-----------------------------------------------------------------------------------------------------------------------
+
+driver.manage().timeouts().implicitlywait(10, TimeUnit.SECOND)
+-it is coming from Selenium
+-Basically this line will allow our driver to wait up to given time, if driver cannot immediately locate web element
+-we write 1 time and it will apply to whole driver session
+-driver does not have to wait until given time (10sec.)
+(If it finds the web element before 2 secs. it will continue with execution)
+
+-----------------------------------------------------------------------------------------------------------------------
+
+checkbox & radio button
+
+P.I.Q: How do you handle checkbox and radio buttons using Selenium?
+
+1. We can click
+2. We can check if they are selected or not. --> isSelected()
+3. We can check if they are enabled or not. --> isEnabled()
+
+isSelected() ---> if web element is selected, it will return true, if not false
+isEnabled() ---> it web element is enabled, it will return true, if not false
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Stale Element Reference Exception
+    There are 2 situations that we can get this exception:
+
+1. Navigation (Refresh, back, forward)
+-(handle with reassigning the web element)  Reassigning = relocating
+-relocation means; you will find or reassign element again
+-CydeoLink = driver.findElement(locator);
+
+2. When element deleted from both html and page (handle with try/catch)
+

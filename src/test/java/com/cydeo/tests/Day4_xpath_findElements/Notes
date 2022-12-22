@@ -1,0 +1,108 @@
+
+#1 cssSelector review
+#2 xpath
+#3 isDisplayed method
+#4 Task1_2
+#5 findElement vs findElements
+#6 checkBoxes and radioButtons
+#7 StaleElementReferenceException
+
+----------------------------------------------------------------------------------------------------------------------
+
+cssSelector:
+-it is one of 8 locators of Selenium
+-it allows users to create custom locators using attributes and values
+-it doesn't limit us using only id,name, className attributes
+-we can use ANY attribute and their values
+-It has its own syntax that we must follow to create cssSelector
+
+Syntax: parentElement > childElement
+Ex:
+    <div class='something'>
+        <h2> Header text </h2>
+        </div>
+
+       tagName[class='something'] > h2
+
+Syntax #1: tagName[attribute='value']
+        We are not limited with any attributes or value
+
+Syntax #2: It is limited with only id and class attributes
+for class --> tagName.valueOfClass
+          --> .valueOfClass: it makes less specific means it will go and locate this class attribute in any tagName
+for id    --> tagName#valueOfid
+          --> $valueOfId : it makes less specific means it will go and locate this id attribute in any tagName
+
+Ex: <a href="https://www.google.com" id="hg34" class="hyj54" for="lkn78"> Something here </a>
+
+  Locate this element with using id attribute in cssSelector:
+  - a[id='hg34']
+  - a#hg34
+
+  Locate this element with using class attribute in cssSelector:
+  - a[class='hyj54']
+  - a#hyj54
+
+  Locate this element with using for attribute in cssSelector:
+  - a[for='lkn78']
+
+---------------------------------------------------------------------------------------------------------------------
+XPATH:
+-it is one of 8 locators of Selenium
+-it allows us to create custom locators using provided any attribute and their values
+-we can also use the text of the provided web element to create locator
+
+Xpath has 2 different types:
+
+***P.I.Q*** :  What is the different between absolute and relative xpath?
+
+#1. ABSOLUTE XPATH:
+ - it starts with single slash "/"
+ - it starts looking in html from root/parent to web element
+ - it starts from html tag, and it goes down 1 by 1 until we reach the specific web element that we are looking for
+ - This is not a goo way of locating element
+ - it will break with any minimal change in html code
+
+Syntax: /html/body/div[3]/div/div/tBody/div/button[2]
+
+#2. RELATIVE XPATH:
+-it starts with double slash "//"
+- "//" means you can start from anywhere in HTML code
+- Since we are allowed to start from anywhere in the HTML, relative xpath is very dependable
+- We will use relative xpath, not absolute xpath
+
+MAIN SYNTAX: //tagName[@attribute='value']
+
+How do we go from parent to child using xpath?
+-Using "/" we can go from parent to direct child
+-Using "//" we can go from parent to any child(grand-child, grand-grand-child...)
+
+COMMONLY USED XPATH SYNTAX:
+#1. //tagName[@attribute='value']
+#2. //tagName[contains(@attribute, 'value')]
+#3. //tagName[text()='text of the element'] or //tagName[.='text of element']
+#4. //*[@attribute='value'] --> "*" stands for all tags
+                            --> it will make less specific for searching element
+
+---------------------------------------------------------------------------------------------------------------------
+.isDisplayed();
+What does it do?
+-it returns boolean value on a given web element
+-if web element is displayed, it will return to "true"
+-if web element is not displayed, it will return to "false"
+-it doesn't accept any arg
+
+Syntax: driver.findElement(locator).isDisplayed() ---> true, if displayed
+Syntax: driver.findElement(locator).isDisplayed() ---> false, if not displayed
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+TESTNG:
+
+What is TestNG?
+-It is UNIT TESTING FRAMEWORK
+
+Is this tool created for testers?
+-No, its mainly for developers.
+
+Is this only for Unit testing framework?
+-No, there is also JUNIT NUNIT
+
+How do we create structure or change the behaviors of method using TestNG
+-ANNOTATIONS
+
+Using annotations we can change the behavior of the methods.
+
+Common annotations we will be using?
+-@Test
+-@BeforeMethod, @AfterMethod ---
+-@BeforeClass, @AfterClass
+-@BeforeTest, @AfterTest
+-@BeforeSuite, @AfterSuite
+
+@Test:
+-This annotation will convert a regular java method into a runnable test method.
+-Each test run by default in Alphabetical order
+-We can change the running order, using priority
+-Each test is independent from each other UNLESS we create dependency
+
+Ex:
+@Test
+public void test1(priority = 1){
+code
+assertion
+}
+
+@Test
+public void myTest2(priority = 2, dependsOnMethod="test1"){
+}
+
+@BeforeMethod:
+- It will run once before each test.
+- The number of test we have, will be determining the number of this method will be running
+- If we have 10 @Test, this will run 10 times before each test
+
+@AfterMethod:
+- Same as @BeforeMethod, but it will run after @Test
+- It will just run once after each @Test
+
+@BeforeClass:
+- It will ONLY RUN 1 TIME in each class before everything else
+- This doesn't care about how many @Test you have
+
+@AfterClass:
+- It will ONLY RUN 1 TIME in each class after everything else
+- This doesn't care about how many @Test you have
+
+EX: If we want to open a browser before each @Test and close after each @Test, where do we put our setUp and tearDown methods?
+1. @BeforeMethod: WebDriver driver =
+WebDriverFactory.getDriver("chrome")
+2. @AfterMethod: driver.quit() or driver.close()
+
+Assertions:
+What do assertions do?
+-Assertions are used to verify actual=expected
+-Type of assertions can be String, int, List<String>,
+-Assertions determine if a test pass or fail
+
+There are 3 types of Assertions:
+-Assert.assertEquals(actual,expected,"Optional fail message")
+-Assert.assertTrue(actual.equals(expected),"Optional fail message")
+-Assert.fail() --> used for developers to make test fail purposely
+
+------------------------------------------------------------------------------------------------------------------------
+DROPDOWNS:
+How many types of dropdowns we have?
+- 2 types: (HTML dropdown, Select dropdown)
+
+#1 HTML dropdown:
+-if thr dropdown has no ,select. tag, it is a html dropdown
+-we handle like other WebElements: locate it and click on it
+
+#2 Select dropdown:
+-If the dropdown has <select> tag it is select dropdown
+-to be able to handle this type of dropdown we have to use SELECT class
+
+SYNTAX: Select select = new select(finding <select> dropdown WebElement)
+
+getOptions():
+-it will get all options from this HTML
+-Return type: List<WebElement>
+
+getFirstSelectedOptions();
+-it will give us default option or current selected option
+-Return type: WebElement
+
+How can we do selections on select dropdown?
+There are 3 ways:
+-selectByVisibleText
+-selectByValue
+-selectByIndex

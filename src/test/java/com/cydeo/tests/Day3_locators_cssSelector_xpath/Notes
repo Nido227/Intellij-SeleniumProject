@@ -1,0 +1,186 @@
+Review:
+
+.findElement(By.locator("String"))
+
+What does it do?
+-Finds and returns a single web element
+
+What does it accept as argument?
+-It accepts locator parameter as String
+
+What is the return type?
+-Return type is WebElement
+
+What kind of exception does it throw?
+-It will throw NoSuchElementException if it can not find given webElement
+
+What happens when exception is thrown in Selenium code execution? Is is going to execute the rest of the lines?
+-Once it throws the exception, the rest of the code will not execute UNLESS we handle it.
+
+When do we have NoSuchElementException?
+-Wrong locator provided
+-Synchronization: when driver and browser are not on same page, driver will try to find a web element that is not loaded yet.
+If this happens, it will throw NoSuchElementException.
+
+======================================================================================================================
+.click();
+
+What does it do?
+It clicks to given web element
+
+Does it accept argument?
+No.
+
+Does it work just by itself ---> driver.click();
+- driver.findElement(By.locator("")).click();
+
+*** Different between click ans submit method?
+- click() - Perform only click operation as like mouse click
+- submit() - Perform Enter operation as like keyboard Enter event
+
+======================================================================================================================
+.sendKeys("Some text");
+
+What does it do?
+-It will pass the provided String into given element
+
+Does it accept argument?
+-Yes, it accepts String arg.
+-We can pass Keys commands into sendKeys method as well
+
+Keys.ENTER:
+-This piece of code will imitate user pressing the "ENTER" key from keyboard
+
+======================================================================================================================
+.getText();
+
+What does it do?
+-It will get the content from in between the opening and closing tag
+
+What is the return type?
+-String
+
+Does it accept any argument?
+-No.
+
+Syntax: We can not say driver.gettext();
+driver is helping you do automation,
+driver.findElement(By.locator("")).getText();
+
+Example:
+<a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+
+driver.findElement(By.id("sjdg65")).gettext() ---> TESLA CYBERTRUCK
+======================================================================================================================
+
+.getAttribute("Attribute name");
+
+What does it do?
+-Find the matching attribute and returns its value
+
+What is the return type?
+-String
+
+Does it accept any argument?
+-It accepts String arg
+
+Example:
+<a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+driver.findElement(By.id("sjdg65")).getAttribute("href") --- this will return -> https://tesla.com
+driver.findElement(By.id("sjdg65")).getAttribute("name") --- this will return -> uhs67
+driver.findElement(By.id("sjdg65")).getAttribute("class") --- this will return -> hsjd98
+driver.findElement(By.id("sjdg65")).getAttribute("id") --- this will return -> sjdg65
+======================================================================================================================
+
+LOCATORS:
+
+How many total locators do we have?
+-8 Locators
+id
+name
+className
+linkText
+partialLinktext
+tagName
+cssSelector
+xpath
+
+#1 id:
+-It will ind any return web element that has matching id attribute value
+-"id" is always unique
+EX: <a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+driver.findElement(By.id("sjdg65"));
+
+#2 name:
+-It will find and return web element that has first matching "name" attribute value
+-"name" is NOT always unique
+EX: <a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+driver.findElement(By.name("uhs67"));
+
+#3 className:
+-It will find and return web element that has first matching "className" attribute value
+"className is NOT always unique
+EX: <a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+driver.findElement(By.className("hsjd98"));  (THE VALUE ATTRIBUTE IS FROM CLASS!!!)
+
+#4 linkText:
+-It will look through of the LINKS in the HTML page an return first matching result
+-It ONLY works with links (<a> tag)
+-It works similar to .equals() method in java
+-It is looking for EXACT String match
+EX: <a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+driver.findElement(By.linkText("TESLA CYBERTRUCK"));
+
+#5 partialLinkText
+-It will look through of the LINKS in the HTML page an return first matching result
+-It ONLY works with links (<a> tag)
+-It works similar to .contains() method in java
+-It is looking for PARTIAL String match
+EX: <a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+driver.partialLinkText(By.linkText("TESLA CYBERTRUCK"));
+driver.partialLinkText(By.linkText("TESLA"));
+driver.partialLinkText(By.linkText("CYBERTRUCK"));
+
+#6 tagName:
+-This locator locates using given TAG NAME
+-We pass the Tag name as String parameter
+-It will find and return first matching result
+EX: <a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+driver.partialLinkText(By.tagName("a"));
+
+-----------------------------------------------------------------------------------------------------------------
+
+cssSelector:
+-it is one of 8 locators coming from Selenium Library
+-it allows us to create custom locators
+-we are able to locate web elements with any attribute value
+-we are not just limited to name, id, className attribute values
+-we can use any custom attribute that we see on web page
+
+Syntax 1: tagName[attribute='value']
+        tagName[attribute="value"]  this works too, but in intelliJ it can give issue.
+
+EX: <a href="https://tesla.com" name="uhs67" class="hsjd98" id="sjdg65"> TESLA CYBERTRUCK </a>
+
+    a[href='https://tesla.com']
+
+Syntax 2: it is limited to use only id or class attribute value
+        "." --> stands for class attribute
+        "#" --> stands for id attribute
+
+        tagName.classValue
+        tagName#idValue
+
+
+
+
+
+
+
+
+
+
+
+
+
+

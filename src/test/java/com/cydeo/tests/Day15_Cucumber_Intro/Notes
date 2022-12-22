@@ -1,0 +1,181 @@
+Today's schedule:
+
+- Introduction to different frameworks
+- Introduction to BDD framework
+- Learn Cucumber
+
+We will be focusing more on "Tell me about your framework?" question.
+
+- Selenium GRID
+- Jenkins
+- SQL
+- API
+------------------------------------------------------------------------------------------------------------------------
+DDT: DATA DRIVEN TESTING FRAMEWORK
+- Data Driven Testing: Executing the same tests against different test
+data.
+- Data Driven Testing Framework:
+- It is the framework we are able to read data from an external file
+and use it in our source code.
+- We can get data from:
+- MS Excel
+- MS Access
+- Database
+- Feature Files
+- configuration.properties
+-------------------------------------------------------------
+- Keyword Driven Testing Framework:
+- Creating testing structure based on some  keywords that are
+executable
+- This requires a lot of time to invest in to even make it work, but
+also it is hard to maintain,and hard to scale since the object
+repositories and keyword repositories have to maintained  and
+expanded as the framework gets bigger
+-------------------------------------------------------------
+MVP: MINIMAL VIABLE PRODUCT
+
+- TDD: TEST DRIVEN DEVELOPMENT: (BUG FREE DEVELOPMENT)
+- There is a repeating development cycle with TDD
+#1. Write tests before writing any source code.
+#2. Run the tests and it will fail
+#3. Write minimum amount of code to make the tests pass
+#4. Run the tests again.
+#5. Optionally Refactor the test scripts and REPEAT
+#6. Test will pass.
+- In TDD developers are writing @Test in preferred Programming Language
+- That's why it is not readable or understandable for non-tech team
+members of the team
+- That is why we will be usin BDD
+------------------------------------------------------------
+BDD: BEHAVIOR DRIVEN DEVELOPMENT
+
+- BDD has 2 layers:
+#1. Business Layer: FEATURE FILES
+- Feature files will be storing different features, scenarios, and
+reusable steps in GHERKIN language
+- Business side is mostly for collabration with non-tech people
+#2. Implemantation Layer: STEP DEFINITIONS
+- technical people implement the "Step Definitions" to convert steps
+(from feture file) into concrete actions (using java-selenium code)
+-------------------------------------------------------------
+What is a framework?
+
+- A framework defines a set of rules or best practices which we can follow in a systematic way to achieve the desired results.
+
+-Test automation frameworks deal with best practices to achieve the goals of out automation project
+
+Why are we using frameworks?
+-Framework is a code structure that helps to make code maintenance easy.
+-Without frameworks, we will place the "code" as well as data" on the same place which is neither re-usable nor readable.
+
+Using Frameworks, produce beneficial outcomes like
+(Reliability, Maintainability, Manageability, Accessibility, Availability, Reliability, Flexibility, Measure-ability)
+
+Some popular testing framework approaches
+-Data Driver Testing Framework
+-Keyword Driver Testing Framework
+-Hybrid testing Framework
+
+Data Driver Testing Framework
+-Driven by data!
+-Data Driven framework is focused on separating the tet scripts logic and the test data from each other
+-Allows us to create test automation by passing different sets of test data from outside of the code
+-The test data is kept in external file or resources such as MS Excel Sheets, MS Access Tables, SQL DataBase, XML files etc
+
+Why data driven framework?
+-Usually you have your data in excel sheets
+-Assume you need to run a set of tests with different data (Say, login test)
+-Assume, you need to test login form with 50 different sets of test data
+-As a manual tester, you do log in with all the 50 different sets of test data for 50 times
+-As an automation tester you can create a test script and run 50 times by changing the test data on each run you can create
+50 test scripts to execute the scenario
+
+-We can achieve Data-driven framework using
+-TestNG's data provider
+-Cucumber scenario outlines
+-Excel apache poi
+
+Keyword Driven Framework
+-Keyword Driven Framework focuses on managing the test automaton framework using different keywords that are set-up for
+exactly what is supposed to be happening in each test case and test steps
+
+Advantages of KDF
+-Minimal scripting knowledge is needed once the framework is setup
+-A single keyword can be used across multiple test scripts, so the code is reusable
+-Test scripts can be built independent of the application under test
+
+Hybrid testing framework
+-Hybrid Test framework is  concept where we are using the advantages of both Keyword and Data driven framework
+-Hybrid testing is what most frameworks evolve/develop into over time and multiple projects
+
+What is Cucumber?
+-Cucumber is a tool that allows us to write out tests as scenarios in gherkin language
+-Cucumber tool is just a simple overlay on top of out actual test code
+-Cucumber is NOT a testing tool
+-It does not contain any assert logic, or programming logic by itself.
+-That's why we need to use it with "cucumber-java" and "cucumber-junit"
+-It is a BDD tool, and it simply allows us to put a cover layer on top of the actual source code to increase collaboration and decrease misunderstandings.
+
+There are 2 Layers to a BDD approach
+-Business Layer & Implementation layer
+
+Business Layer: feature files
+-Feature files are where we write the "tests" as user "scenarios" in gherkin language
+-A feature can have 1 or mor agile stories
+-And from those agile stories we can create more scenarios
+
+Implementation Layer: Step definitions
+-Step definitions are where we actually implement the java-selenium code
+-------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+- GIVEN, WHEN, AND, THEN, BUT
+--> All of these keywords we use in feature files are only for communication purpose
+--> They don't change the functionality of the step_definitions
+
+- Our code will be executed in the order we create in the feature files
+- Each scenario will executed by top to bottom, and each step will be creating it step_definition method from its own package and class
+
+GIVEN: is used fro pre-conditions
+Ex: Given user is already on login page
+Given user already on home page
+Given user already login to the page
+
+WHEN: is used fro when some actions happen
+Ex: When user enters username
+When user clicks submit button
+When users search for something
+
+AND: is used for when you many repeating lines of any keyword
+BUT: is similar for "AND" but for when we are comparing or some negative scenario happening
+
+THEN: is used for when the verification is happening
+- Then user should see title of the page
+- Then user should be on dashboard page
+
+----------------------------------------------------------------------------------------------------------------
+
+TAGS: Tags are used to group different scenarios together
+- We can use tags to include or exclude some scenarios
+- If we put the @tag on top of the .feature file, it will effect whole  feature file/all scenarios
+- If we put it on the top of a Scenario, it will only effect that scenario
+- You can have as many as tags you want for feature file or scenario
+- How do we include or exclude different tags together?
+- How do we use different tags together?
+
+or:
+- "or" keyword can be used fro checking condition
+- when we use "or" we are being less specific, less selective
+- if either one of the tags are matching, the scenario or feature will be executed
+- "or" is like "||" in Java
+- if either one sides are matching, it will execute the scenario or feature file
+
+and:
+- "and" keyword can be used fro checking condition as well
+- when we use "and" keyword we are being more specific
+- "and" is like "&&" in Java
+- the tags  on both side has to be matching for a scenario or feature
+
+and not:
+- "and not" keyword can be used excluding conditions
+Ex: @Regression and not @student

@@ -1,0 +1,159 @@
+Review Notes
+
+-What is Selenium?
+It is a bunch of jar files that allows us to automate browsers
+In simple terms, selenium is a bunch of jar files (libraries)
+We use this jar files to automate browsers
+
+-What is Maven?
+Maven is a build automation tool
+Maven projects comes with certain folder structure and pom.xml
+
+-What is pom.xml file?
+Its short for "Project Object Model"
+pom.xml is the most important file in maven project
+We manage ( add, remove, change the version of) our dependencies
+
+-Is Maven for testers?
+No, it is mainly for developers.
+As a tester (SDET) we will take some advantage of some  of its functionalities
+SDET - Software Developer Engineer in Test
+
+-What version of Selenium are we using?
+3.141.59
+
+-What is a dependency?
+They are just jar files
+We add to pom.cml file and maven automatically downloads the version of the dependency we provide
+
+-Where do we get our expected data?
+Requirement documents
+
+-Where do we get the actual data?
+It comes from browser. When we do out testing, we get actual data from browser/ web page
+
+=========================================================================================================
+
+To be able to do any action on any web element, there are some certain steps we have to follow:
+#1 We have to locate the web element that we want to work on
+#2 To locate we have to use a set of methods coming from Selenium library
+-findElement()
+-locator methods
+#3 We decide what action we want to apply, find the method, and use it on the already located web element
+-click
+
+
+.findElement(LOCATOR);
+1. This method finds and returns Single web element
+2. It accepts a locator argument, and finds the request web element using locator
+3. Return type: WebElement type (comes from Selenium Library)
+4. It will throw "NoSuchElementException"
+- if you provide a wrong locator
+- if your page does not load as fast as it should
+
+.sendKeys("text to be sent)
+1. This method is used to send text using Selenium WebDriver
+2. It accepts a string argument
+3. Takes the string, and passes it into the web element as a string
+
+What is a locator?
+-Locators help us locate web elements using Selenium WebDriver.
+-Locators are basically 8 methods coming from Selenium Library
+
+-There are a total of 8 locators
+-We will learn 6 of them
+
+#1 linkText:
+-this locator will work through the text of all the links in the page, and return matching link
+-it accepts String as the text of the link we are trying to locate
+-it will ONLY work on links
+-this method looks for exact text match
+-it is similar to .equal method for java
+-it will search through HTML code and return first matching result
+
+EX: a href:"https://something.com"> Something </a>
+    driver.findElement(By.linkText("Something"))
+
+#2 partialLinktext:
+-this locator will work through the text of all the links in the page, and return the PATIAL matching link
+-it accepts a String as the text of the link we are trying to locate
+-it will ONLY work on links <a> anchor tags
+-this method looks for PARTIAL text match
+-it is similar to .contains method in java
+-it will search through HTML code and return first matching result
+
+EX: a href:"https://something.com"> Something text here longer </a>
+    driver.findElement(By.partialLinkText("Something"))
+
+#3 name:
+-it uses "name" attribute's value to locate web element
+-it will go through HTML code and find matching "name" attribute value, and return the first matching web element
+-name locator does not have to be unique
+
+Ex: <div name="hu58> </div>
+Syntax: driver.findElement(By.name("hu58"));
+
+#4 id:
+-It uses "id" attribute's value to locate WebElement
+-It will go through HTML code and find matching "id"
+- id HAS TO BE UNIQUE
+
+Ex: <div name="hu58" id="dge64"> </div>
+Syntax: driver.findElement(By.id("dge64"));
+
+#5 className:
+-It uses ""class" attribute's value to locate web element
+-it will go through HTML code and find matching "class" attribute value, and return the first matching web element
+-name locator does not have to be unique
+
+Ex: <div class="abc58> </div>
+Syntax: Syntax: driver.findElement(By.className("abc58"));
+
+#6 tagName:
+-it will find and return the first matching tag provided
+- this locator doesn't have many use cases unless either the page is very simple or
+ we are trying to get a group of web elements using findElements method
+
+ Ex: <div class="abc58> </div>
+ Sytax: driver.findElement(By.tagName("div"));
+
+ -------------------------------------------------------------------------------------------------------------
+ .getText();
+-this method will get the text from in between the opening and closing tag
+-it does not accept any arg
+-Return type is String
+
+Ex: <a href="https://something.com"> Something text </a>
+driver.findElement(By.partialLinkText("Something"))
+-> returns me the link tag as a web element
+-> return type is WebElement
+
+driver.findElement(By.partialLinkText("Something")).getText();
+-> this line returns me to String
+-> it will print out "Something text"
+
+.getAttribute();
+-this method will return the given attribute's value
+-it accepts a String arg
+-return type is String
+-it will find the matching attribute, and return its value
+
+Ex: <div name="hu58" id="asd89" class="dsf76"> TEXT </div>
+
+Syntax: driver.findElement(By.id("asd89")); -> returns to WebElement
+    - driver.findElement(By.id("asd89")).getAttribute("name")  -> hu58
+    - driver.findElement(By.id("asd89")).getAttribute("class") -> dsf76
+
+
+
+
+
+
+
+
+
+
+
+
+
+

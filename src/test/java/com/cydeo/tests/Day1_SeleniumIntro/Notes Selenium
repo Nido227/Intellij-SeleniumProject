@@ -1,0 +1,113 @@
+Selenium Automation Notes 1
+
+Software helps to love problems
+
+Our motto: Copy past, make it work. Less effort - more money!
+
+Work smart, not hard!
+
+Automation Framework will consist of bunch of things. (Java Selenium WebDriver IntelliJ Cucumber bDD JUnit Maven)
+
+The client: he tells the taxi driver where he wants to go and how to get there.
+Taxi driver: he executes the clients request, the taxi sends his own request to the car.
+The Car: the car executes the taxi drivers request.
+
+How selenium webdriver works?
+
+The client gets to the destination through dialogues that happen between the client - taxi driver and taxi driver  - car.
+
+Test engineer: that writes the automation code; the automation code sends request to the browser driver component
+The browser driver component: it executes the test engineer requests; it sends its own request to the browser
+The browser: it executes the browser driver requests
+===============================================================================================
+
+Maven ProjectL
+-Maven is a "build" automation tool
+-"build" : repeating steps when we are creating a project
+-Maven project itself is different than java project
+-Maven is not a tool for testers only it is mainly tool for developers
+-It comes with certain ype of folder structure and other files
+
+-SRC
+-main: this is for developers. they write their own code
+-test: this is where developers write their unit test. As a tester we will just need this test folder
+
+-pom.xml : this file is used to add and manage dependencies of out project
+-target L this folder is where maven project is storing the compiled version of the project and some other information
+-it will only appear after you run your code
+
+=============================================
+Selenium Navigation
+back - takes to previous page
+forward - takes us to forwarded page
+refresh - refreshes the page
+
+=======================================================
+1- What does this method do?
+2- Does it accept any arguments
+3- Does it have any return type
+4- Does it throw any certain type of exception
+
+- get("");
+#1- What does this method do?
+-It gets given URL in opened browser
+
+#2- Does it accept any arguments
+-yes it accepts a string arg
+
+#3- Does it have any return type
+-Void return type
+
+Basic Navigation :
+driver.navigate() --> navigate methods allows us to do simple navigations
+driver.navigate().forward() --> will take page to forward page
+driver.navigate().back() --> will take page to previous page
+driver.navigate().refresh() --> will refresh the current page
+driver.navigate().to --> same as .get("") method
+
+- .getTitle();
+#1. What does this method do?
+-It gets the title of the page
+
+#2. Does it accept any argument
+No it doesn't accept any arg
+
+#3 Does it have any return type?
+Yes, it returns a String
+
+- .getCurrentUrl():
+#1 What does this method do?
+-Gets current URL of the current page
+
+#2. Does it accept any argument
+No, it doesn't accept any arg
+
+#3 Does it have any return type?
+Yes, it returns a String
+
+- driver.manage().window().maximize();
+maximize the currently opened browser
+This maximizing will happened on the line of code we call this method
+
+- driver.manage().window().fullscreen();
+It is also maximizing the page
+This method is not working for some type of windows version
+
+-Why maximizing the page is important?
+Because in different sizes the content displayed will be different
+This happens if the page is "responsive"
+Responsive: if size gets small, it will display less content
+-maybe it will store some web elements under some hamburger menu, or some other type of menu
+
+- driver.close();
+Will close only the currently opened browser/page
+If we have more than one window opened, it will only close the one that focused on
+
+- driver.quit();
+It will kill the current session.
+If we have more than 1 window open, it will close all of them.
+After using quit() method, we can not execute any more line of code
+It will give exception (NoSuchSessionException)
+
+
+
